@@ -7,56 +7,86 @@
 
 ---
 
+## Скачать
+
+[![Download macOS](https://img.shields.io/badge/Download-macOS_.app-blue?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/hellstation/steam-achievement-unlocker/releases/tag/v1.0.0)
+[![Release v1.0.0](https://img.shields.io/badge/Release-v1.0.0-brightgreen?style=for-the-badge&logo=github)](https://github.com/hellstation/steam-achievement-unlocker/releases/tag/v1.0.0)
+
+**[↓ Скачать Steam-Achievement-Unlocker-macOS.zip (v1.0.0)](https://github.com/hellstation/steam-achievement-unlocker/releases/download/v1.0.0/Steam-Achievement-Unlocker-macOS.zip)**
+
+Все релизы: [Releases](https://github.com/hellstation/steam-achievement-unlocker/releases)
+
+---
+
 ## Требования
 
 - macOS
-- Python 3.10 или новее
 - Запущенный и авторизованный клиент Steam
 - Steam Web API Key + SteamID64 (при первом запуске)
-
----
-
-## Preflight
-
-При старте скрипт проверяет:
-
-- macOS
-- Python 3.10+
-- запущенный клиент Steam (иначе код выхода `7`)
-
-Без запущенного Steam приложение сразу завершится.
-
-`libsteam_api.dylib` нужна **только для записи** достижений.  
-Просмотр библиотеки и списка ачивок возможен и без неё (запись откажет с понятной ошибкой).
-
----
-
-## Установка
-
-```bash
-git clone https://github.com/hellstation/steam-achievement-unlocker.git
-cd steam-achievement-unlocker
-pip3 install -r requirements.txt
-```
-
-> Зависимости (`requests`, `rich`) также ставятся автоматически при первом запуске, если их нет.
+- **Из исходников:** Python 3.10+  
+- **Из .app:** Python не нужен
 
 ---
 
 ## Запуск
 
+### Вариант 1 — готовое приложение (.app)
+
+1. Скачай zip с [релиза v1.0.0](https://github.com/hellstation/steam-achievement-unlocker/releases/tag/v1.0.0)  
+   или напрямую:  
+   [Steam-Achievement-Unlocker-macOS.zip](https://github.com/hellstation/steam-achievement-unlocker/releases/download/v1.0.0/Steam-Achievement-Unlocker-macOS.zip)
+2. Распакуй архив
+3. Перетащи `Steam Achievement Unlocker.app` в **Программы** (по желанию)
+4. **Первый запуск:** ПКМ по приложению → **Открыть** (Gatekeeper)
+5. Запусти **Steam** и войди в аккаунт
+6. Открой приложение — запустится Terminal с меню
+
+`libsteam_api.dylib` при необходимости скачается в  
+`~/Library/Application Support/SteamAchievementUnlocker/`
+
+---
+
+### Вариант 2 — из исходников (Terminal)
+
 ```bash
+git clone https://github.com/hellstation/steam-achievement-unlocker.git
+cd steam-achievement-unlocker
+pip3 install -r requirements.txt
 python3 main.py
+```
+
+> Зависимости (`requests`, `rich`) также ставятся автоматически при первом запуске, если их нет.
+
+Дополнительные флаги:
+
+```bash
+python3 main.py --api-key <KEY> --steam-id <ID> --log-level INFO
+STEAM_AUTO_REFRESH_SECONDS=60 python3 main.py
 ```
 
 ---
 
-## Первый запуск
+## Preflight
+
+При старте проверяется:
+
+- macOS
+- Python 3.10+ (только при запуске из исходников)
+- запущенный клиент Steam (иначе код выхода `7`)
+
+Без Steam приложение сразу завершится.
+
+`libsteam_api.dylib` нужна **только для записи** достижений.  
+Просмотр библиотеки и списка ачивок возможен и без неё.
+
+---
+
+## Первый запуск (настройка)
 
 **1. Steam Web API Key** — https://steamcommunity.com/dev/apikey (домен `localhost`)  
 **2. SteamID64** — https://steamid.io (число вида `76561197989341403`)
 
-Данные: `~/.steam_ach_manager.json`  
+Сохраняется в `~/.steam_ach_manager.json`  
 Кэш игр: `~/.steam_ach_manager_games_cache.json`
 
 ---
@@ -71,10 +101,17 @@ python3 main.py
    - `5` — обновить с сервера
    - `0` — назад
 
+Перед записью ачивок запрашивается подтверждение.
+
+---
+
+## Сборка .app у себя
+
 ```bash
-STEAM_AUTO_REFRESH_SECONDS=60 python3 main.py
-python3 main.py --api-key <KEY> --steam-id <ID> --log-level INFO
+bash scripts/build_macos_app.sh
 ```
+
+Результат: `dist/Steam Achievement Unlocker.app`
 
 ---
 
@@ -84,6 +121,8 @@ python3 main.py --api-key <KEY> --steam-id <ID> --log-level INFO
 steam-achievement-unlocker/
 ├── main.py
 ├── requirements.txt
+├── scripts/build_macos_app.sh
+├── SteamAchievementUnlocker.spec
 ├── tests/
 └── src/
     ├── preflight.py
@@ -113,6 +152,8 @@ steam-achievement-unlocker/
 python3 -m pip install pytest
 python3 -m pytest
 ```
+
+---
 
 ## Коды выхода
 

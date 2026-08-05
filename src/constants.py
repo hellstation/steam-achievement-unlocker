@@ -1,9 +1,20 @@
+import sys
 from pathlib import Path
 
-CONFIG_FILE    = Path.home() / ".steam_ach_manager.json"
+
+def _runtime_dir() -> Path:
+    """Project root in dev; writable Application Support when frozen (.app)."""
+    if getattr(sys, "frozen", False):
+        path = Path.home() / "Library" / "Application Support" / "SteamAchievementUnlocker"
+        path.mkdir(parents=True, exist_ok=True)
+        return path
+    return Path(__file__).resolve().parent.parent
+
+
+CONFIG_FILE = Path.home() / ".steam_ach_manager.json"
 GAMES_CACHE_FILE = Path.home() / ".steam_ach_manager_games_cache.json"
-SCRIPT_DIR     = Path(__file__).parent.parent
-LOCAL_DYLIB    = SCRIPT_DIR / "libsteam_api.dylib"
+SCRIPT_DIR = _runtime_dir()
+LOCAL_DYLIB = SCRIPT_DIR / "libsteam_api.dylib"
 
 STEAM_API_BASE = "https://api.steampowered.com"
 
