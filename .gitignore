@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Virtual env / secrets
+.venv/
+venv/
+env/
+.env/
+
+# Steamworks runtime artifacts (generated at run)
+libsteam_api.dylib
+steam_appid.txt
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs / temp
+*.log
+*.tmp
+*.bak
+
+# Local worktrees / agent scratch (not part of the product)
+.worktrees/
+.superpowers/
+docs/superpowers/
