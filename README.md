@@ -9,10 +9,10 @@
 
 ## Скачать
 
-[![Download macOS](https://img.shields.io/badge/Download-macOS_.app-blue?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/hellstation/steam-achievement-unlocker/releases/tag/v1.0.0)
-[![Release v1.0.0](https://img.shields.io/badge/Release-v1.0.0-brightgreen?style=for-the-badge&logo=github)](https://github.com/hellstation/steam-achievement-unlocker/releases/tag/v1.0.0)
+[![Download macOS](https://img.shields.io/badge/Download-macOS_.app-blue?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/hellstation/steam-achievement-unlocker/releases/tag/v1.0.1)
+[![Release v1.0.1](https://img.shields.io/badge/Release-v1.0.1-brightgreen?style=for-the-badge&logo=github)](https://github.com/hellstation/steam-achievement-unlocker/releases/tag/v1.0.1)
 
-**[↓ Скачать Steam-Achievement-Unlocker-macOS.zip (v1.0.0)](https://github.com/hellstation/steam-achievement-unlocker/releases/download/v1.0.0/Steam-Achievement-Unlocker-macOS.zip)**
+**[↓ Скачать Steam-Achievement-Unlocker-macOS.zip (v1.0.1)](https://github.com/hellstation/steam-achievement-unlocker/releases/download/v1.0.1/Steam-Achievement-Unlocker-macOS.zip)**
 
 Все релизы: [Releases](https://github.com/hellstation/steam-achievement-unlocker/releases)
 
@@ -32,14 +32,21 @@
 
 ### Вариант 1 — готовое приложение (.app)
 
-1. Скачай zip с [релиза v1.0.0](https://github.com/hellstation/steam-achievement-unlocker/releases/tag/v1.0.0)  
+1. Скачай zip с [релиза v1.0.1](https://github.com/hellstation/steam-achievement-unlocker/releases/tag/v1.0.1)  
    или напрямую:  
-   [Steam-Achievement-Unlocker-macOS.zip](https://github.com/hellstation/steam-achievement-unlocker/releases/download/v1.0.0/Steam-Achievement-Unlocker-macOS.zip)
+   [Steam-Achievement-Unlocker-macOS.zip](https://github.com/hellstation/steam-achievement-unlocker/releases/download/v1.0.1/Steam-Achievement-Unlocker-macOS.zip)
 2. Распакуй архив
 3. Перетащи `Steam Achievement Unlocker.app` в **Программы** (по желанию)
 4. **Первый запуск:** ПКМ по приложению → **Открыть** (Gatekeeper)
 5. Запусти **Steam** и войди в аккаунт
 6. Открой приложение — запустится Terminal с меню
+
+**Apple Silicon (M1/M2/M3):** приложение откроется нативно; внутри CLI идёт через **Rosetta**.  
+Если Terminal напишет про Rosetta — один раз:
+
+```bash
+softwareupdate --install-rosetta --agree-to-license
+```
 
 `libsteam_api.dylib` при необходимости скачается в  
 `~/Library/Application Support/SteamAchievementUnlocker/`
